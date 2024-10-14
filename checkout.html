@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main>
+        <h1>Checkout</h1>
+        <form id="checkout-form">
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div>
+                <label for="address">Address:</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div>
+                <label for="payment-method">Payment Method:</label>
+                <select id="payment-method" name="payment-method" required>
+                    <option value="credit-card">Credit Card</option>
+                    <option value="paypal">PayPal</option>
+                    <option value="bank-transfer">Bank Transfer</option>
+                </select>
+            </div>
+            <button type="submit">Place Order</button>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2023 Dropshipping Store</p>
+    </footer>
+    <script>
+        document.getElementById('checkout-form').addEventListener('submit', (event) => {
+            event.preventDefault();
+            alert('Order placed successfully!');
+            localStorage.removeItem('cart');
+            localStorage.setItem('cartCount', 0);
+            window.location.href = 'index.html';
+        });
+
+        // Load the header
+        document.addEventListener('DOMContentLoaded', () => {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-placeholder').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html>

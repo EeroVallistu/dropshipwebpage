@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    <main>
+        <section id="cart-items">
+            <!-- Cart items will be dynamically inserted here -->
+        </section>
+        <button id="clear-cart">Clear Cart</button>
+        <button id="checkout">Checkout</button>
+    </main>
+    <footer>
+        <p>&copy; 2023 Dropshipping Store</p>
+    </footer>
+    <script src="script.js"></script>
+    <script src="loadHeader.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cartItemsContainer = document.getElementById('cart-items');
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cart.length > 0) {
+                cartItemsContainer.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <h2>${item.name}</h2>
+                        <p>${item.price}</p>
+                    </div>
+                `).join('');
+            } else {
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+            }
+
+            document.getElementById('clear-cart').addEventListener('click', () => {
+                localStorage.removeItem('cart');
+                localStorage.setItem('cartCount', 0);
+                cartItemsContainer.innerHTML = '<p>Your cart is empty.</p>';
+                updateCartCount();
+            });
+
+            document.getElementById('checkout').addEventListener('click', () => {
+                window.location.href = 'checkout.html';
+            });
+
+            updateCartCount();
+        });
+
+        function updateCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartCount = cart.length;
+            localStorage.setItem('cartCount', cartCount);
+            const cartCountElement = document.getElementById('cart-count');
+            if (cartCountElement) {
+                cartCountElement.textContent = cartCount;
+            }
+        }
+
+        function addToCart(item) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.push(item);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            updateCartCount();
+        }
+    </script>
+</body>
+</html>

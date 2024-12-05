@@ -62,29 +62,25 @@ Follow the instructions to install MariaDB on your system: [MariaDB Installation
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=yourpassword
-DB_NAME=yourdatabase
+DB_NAME=dropshipwebpage
 ```
 
 2. Log in to the MariaDB client:
 ```sh
-sudo mysql -u root -p
+mysql -u root -p -e CREATE DATABASE dropshipwebpage;
 ```
-3. Create database:
-```sh
-CREATE DATABASE yourdatabasename;
-CREATE USER 'yourusername'@'localhost' IDENTIFIED BY 'yourpassword';
-GRANT ALL PRIVILEGES ON yourdatabasename.* TO 'yourusername'@'localhost';
-FLUSH PRIVILEGES;
-```
+
 4. Import the database schema:
 ```sh
-mysql -u yourusername -p yourdatabase < path/to/dump.sql
+mysql -u root -p dropshipwebpage < ./dump.sql
 ```
 Add additional SQL files or seed data if needed:
 ```sh
-mysql -u root -p yourdatabase < path/to/additional_file.sql
+mysql -u root -p dropshipwebpage < ./Update_users_email.sql
+mysql -u root -p dropshipwebpage < ./Update_payment_method.sql
+mysql -u root -p dropshipwebpage < ./update_address_details_id_notnull.sql
+mysql -u root -p dropshipwebpage < ./seed.sql
 ```
-Replace `additional_file.sql` with the name of your SQL file. Ensure the file is in the current directory or specify its full path.
 
 ### Run the Project
 Install dependencies:

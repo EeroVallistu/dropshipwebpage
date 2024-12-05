@@ -4,7 +4,9 @@ This project is a simple dropshipping store built using HTML, CSS, and JavaScrip
 
 ## Table of Contents
 
+
 - [Installation](#installation)
+- [Install Database](#install-database)
 - [Usage](#usage)
 
 
@@ -19,9 +21,6 @@ sudo apt update
 sudo apt install -y nginx git
 ```
 
-```sh
-git clone https://github.com/EeroVallistu/dropshipwebpage.git
-```
 ```sh
 sudo mkdir -p /var/www/dropshipwebpage
 ```
@@ -51,6 +50,50 @@ server {
 ```sh
 sudo ln -s /etc/nginx/sites-available/dropshipping /etc/nginx/sites-enabled/
 sudo systemctl restart nginx
+```
+
+## Install MairaDB
+```sh
+Follow the instructions to install MariaDB on your system: [MariaDB Installation Guide](https://mariadb.com/kb/en/getting-installing-and-upgrading-mariadb/)
+```
+### Setup-database
+1. Create a `.env` file in the root directory and add your database configuration:
+```env
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=yourpassword
+DB_NAME=yourdatabase
+```
+
+2. Log in to the MariaDB client:
+```sh
+sudo mysql -u root -p
+```
+3. Create database:
+```sh
+CREATE DATABASE yourdatabasename;
+CREATE USER 'yourusername'@'localhost' IDENTIFIED BY 'yourpassword';
+GRANT ALL PRIVILEGES ON yourdatabasename.* TO 'yourusername'@'localhost';
+FLUSH PRIVILEGES;
+```
+4. Import the database schema:
+```sh
+mysql -u yourusername -p yourdatabase < path/to/dump.sql
+```
+Add additional SQL files or seed data if needed:
+```sh
+mysql -u root -p yourdatabase < path/to/additional_file.sql
+```
+Replace `additional_file.sql` with the name of your SQL file. Ensure the file is in the current directory or specify its full path.
+
+### Run the Project
+Install dependencies:
+```sh
+npm install
+```
+Start the server:
+```sh
+node server.js
 ```
 
 ## Usage

@@ -67,7 +67,7 @@ DB_NAME=dropshipwebpage
 
 2. Log in to the MariaDB client:
 ```sh
-mysql -u root -p -e CREATE DATABASE dropshipwebpage;
+mysql -u root -p -e "CREATE DATABASE dropshipwebpage";
 ```
 
 4. Import the database schema:

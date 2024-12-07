@@ -1,6 +1,6 @@
 INSERT INTO users (username, password, is_admin, email) VALUES
 ('john_doe', 'password123', 0, 'john.doe@example.com'),
-('admin_user', 'securepassword', 1, 'admin@example.com'),
+('admin', 'admin', 1, 'admin@example.com'),
 ('jane_doe', 'mypassword', 0, 'jane.doe@example.com');
 
 -- Insert data into `products` table

@@ -1,0 +1,66 @@
+version: '3.9'
+
+services:
+  mysql:
+    image: mysql:latest
+    container_name: mysql_container
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: Passw0rd
+      MYSQL_DATABASE: test
+      MYSQL_USER: student
+      MYSQL_PASSWORD: Passw0rd
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: mssql_container
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Passw0rd"
+    ports:
+      - "1433:1433"
+    volumes:
+      - mssql_data:/var/opt/mssql
+
+  postgres:
+    image: postgres:latest
+    container_name: postgres_container
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: Passw0rd
+      POSTGRES_DB: test
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo_container
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  redis:
+    image: redis:latest
+    container_name: redis_container
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+
+volumes:
+  mysql_data:
+  mssql_data:
+  postgres_data:
+  mongo_data:
+  redis_data:

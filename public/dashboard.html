@@ -12,6 +12,22 @@
             <h2>Admin Dashboard</h2>
             <button id="logoutButton">Logout</button>
         </section>
+        <section id="add-product">
+            <h2>Add New Product</h2>
+            <form id="addProductForm">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" name="productName" required>
+                <br>
+                <label for="productPrice">Product Price:</label>
+                <input type="text" id="productPrice" name="productPrice" required>
+                <br>
+                <label for="productImage">Product Image URL:</label>
+                <input type="text" id="productImage" name="productImage" required>
+                <br>
+                <button type="submit">Add Product</button>
+            </form>
+            <p id="addProductMessage" style="color: green;"></p>
+        </section>
     </main>
     <script src="dashboard.js"></script>
     <script src="loadHeader.js"></script>

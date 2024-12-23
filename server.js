@@ -79,3 +79,16 @@ app.post('/api/login', (req, res) => {
         }
     });
 });
+
+app.post('/api/products', (req, res) => {
+    const { name, price, image_url } = req.body;
+    const query = 'INSERT INTO products (name, price, image_url) VALUES (?, ?, ?)';
+    connection.query(query, [name, parseFloat(price), image_url], (err, results) => { // Parse as float
+        if (err) {
+            console.error('Error adding product:', err);
+            res.status(500).send('Error adding product');
+        } else {
+            res.status(200).send({ success: true });
+        }
+    });
+});

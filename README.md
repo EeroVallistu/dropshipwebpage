@@ -57,3 +57,11 @@ npm start
 On your Windows computer, open a web browser. Enter http://localhost:3000 in the address bar.
 
 Admins can log in on http://localhost:3000/admin.html using the username admin and password admin.
+
+## Completed Features
+
+| Feature Description | Status |
+|---------------------|--------|
+|Customers can see a list of products|✅|
+|Administrator can log in|✅|
+|Administrator can add new products|✅|

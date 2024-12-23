@@ -60,8 +60,8 @@ Admins can log in on http://localhost:3000/admin.html using the username admin a
 
 ## Completed Features
 
-| Feature Description | Status |
-|---------------------|--------|
+| Feature | Status |
+|--------------------|--------|
 |Customers can see a list of products|✅|
 |Administrator can log in|✅|
 |Administrator can add new products|✅|
